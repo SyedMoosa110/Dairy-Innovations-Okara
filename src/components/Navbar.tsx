@@ -26,17 +26,17 @@ export default function Navbar() {
           ))}
         </nav>
         <div className="flex shrink-0 items-center gap-2">
-          <button onClick={() => openQuote()} className="btn btn-gold hidden whitespace-nowrap sm:inline-flex">Request Quote</button>
-          <button onClick={() => setOpen(true)} aria-label="Open menu" className="grid h-12 w-12 place-items-center text-white hover:text-gold xl:hidden"><Menu /></button>
+          <button onClick={() => openQuote()} className="btn btn-gold hidden whitespace-nowrap md:inline-flex">Request Quote</button>
+          <button onClick={() => setOpen(true)} aria-label="Open menu" className="grid h-11 w-11 place-items-center text-white hover:text-gold xl:hidden sm:h-12 sm:w-12"><Menu /></button>
         </div>
       </div>
       <AnimatePresence>
         {open && (
-          <motion.div className="fixed inset-0 z-[80] bg-obsidian xl:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="container-x flex h-20 items-center justify-between"><Logo /><button onClick={() => setOpen(false)} aria-label="Close menu" className="grid h-12 w-12 place-items-center text-white"><X /></button></div>
-            <nav className="container-x flex flex-col pt-6">
-              {NAV.map((n) => <a key={n.label} href={n.href} onClick={() => setOpen(false)} className="border-b border-white/10 py-5 font-display text-3xl uppercase tracking-[.12em] text-white">{n.label}</a>)}
-              <button onClick={() => { setOpen(false); openQuote() }} className="btn btn-gold mt-8">Request Quote</button>
+          <motion.div className="fixed inset-0 z-[80] overflow-y-auto bg-obsidian xl:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <div className="container-x flex h-20 items-center justify-between"><Logo /><button onClick={() => setOpen(false)} aria-label="Close menu" className="grid h-11 w-11 place-items-center text-white hover:text-gold sm:h-12 sm:w-12"><X /></button></div>
+            <nav className="container-x flex flex-col pb-12 pt-4">
+              {NAV.map((n) => <a key={n.label} href={n.href} onClick={() => setOpen(false)} className="border-b border-white/10 py-4 font-display text-2xl uppercase tracking-[.12em] text-white transition-colors hover:text-gold sm:text-3xl">{n.label}</a>)}
+              <button onClick={() => { setOpen(false); openQuote() }} className="btn btn-gold mt-8 w-full sm:w-auto">Request Quote</button>
             </nav>
           </motion.div>
         )}

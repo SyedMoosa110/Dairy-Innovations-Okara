@@ -5,8 +5,8 @@ import CountUp from './react-bits/CountUp'
 
 export default function Resources() {
   return (
-    <section id="resources" className="grid lg:grid-cols-2">
-      <div className="bg-slate2 px-6 py-16 sm:px-12 lg:py-24 lg:pl-[max(2rem,calc((100vw-1280px)/2+2rem))] lg:pr-16">
+    <section id="resources" className="grid overflow-hidden lg:grid-cols-2">
+      <div className="bg-slate2 px-6 py-16 sm:px-12 lg:py-24 lg:pl-[max(2rem,calc((100%-1280px)/2+2rem))] lg:pr-16">
         <p className="eyebrow">Technical Resources</p>
         <h2 className="h-section mb-10 text-white">Documents &amp; Manuals</h2>
         <ul className="border-t border-white/10">
@@ -20,14 +20,14 @@ export default function Resources() {
           ))}
         </ul>
       </div>
-      <div className="flex items-center bg-deep px-6 py-16 sm:px-12 lg:py-24 lg:pl-16 lg:pr-[max(2rem,calc((100vw-1280px)/2+2rem))]">
+      <div className="flex items-center bg-deep px-6 py-16 sm:px-12 lg:py-24 lg:pl-16 lg:pr-[max(2rem,calc((100%-1280px)/2+2rem))]">
         <div className="w-full">
           <p className="eyebrow">Impact</p>
           <div className="mt-6 divide-y divide-white/10 border-y border-gold/40">
             {STATS.map((s) => (
               <div key={s.label} className="flex items-baseline justify-between gap-4 py-6">
                 <span className="font-display text-sm uppercase tracking-[.25em] text-slate-300 sm:text-base">{s.label}</span>
-                <CountUp to={s.value} decimals={s.decimals ?? 0} suffix={s.suffix} className="font-display text-5xl font-semibold text-gold sm:text-6xl" />
+                <CountUp to={s.value} decimals={s.decimals ?? 0} suffix={s.suffix} className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-gold" />
               </div>
             ))}
           </div>

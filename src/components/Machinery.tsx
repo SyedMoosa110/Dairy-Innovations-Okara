@@ -20,17 +20,17 @@ export default function Machinery() {
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate2 via-transparent to-obsidian/30" />
                 <span className="absolute left-3 top-3 border border-gold/50 bg-obsidian/70 px-2.5 py-1 font-display text-[12px] uppercase tracking-[.2em] text-gold backdrop-blur">{p.tag}</span>
               </div>
-              <div className="flex flex-1 flex-col p-5">
-                <h3 className="font-display text-xl font-semibold uppercase leading-tight tracking-[.03em] text-white">{p.name}</h3>
+              <div className="flex flex-1 flex-col p-4 sm:p-5">
+                <h3 className="font-display text-lg sm:text-xl font-semibold uppercase leading-tight tracking-[.03em] text-white">{p.name}</h3>
                 <p className="mt-1 text-sm text-slate-400">{p.short}</p>
-                <table className="mt-4 w-full text-sm"><tbody>
+                <table className="mt-4 w-full text-xs sm:text-sm"><tbody>
                   {Object.entries(p.specs).map(([k, v]) => (
-                    <tr key={k} className="border-t border-white/10"><th className="py-2 pr-2 text-left font-normal text-slate-400">{k}</th><td className="py-2 text-right text-white">{v}</td></tr>
+                    <tr key={k} className="border-t border-white/10"><th className="py-2 pr-2 text-left font-normal text-slate-400">{k}</th><td className="py-2 text-right text-white font-medium">{v}</td></tr>
                   ))}
                 </tbody></table>
                 <div className="mt-auto grid gap-2 pt-5">
-                  <button onClick={() => openQuote(p.id)} className="btn btn-gold w-full !px-4">Request Quote <ArrowUpRight size={16} /></button>
-                  <button onClick={() => downloadSpec(p)} className="btn btn-outline w-full !px-4"><Download size={16} />Spec Sheet</button>
+                  <button onClick={() => openQuote(p.id)} className="btn btn-gold w-full !px-3 sm:!px-4 text-xs sm:text-sm">Request Quote <ArrowUpRight size={16} /></button>
+                  <button onClick={() => downloadSpec(p)} className="btn btn-outline w-full !px-3 sm:!px-4 text-xs sm:text-sm"><Download size={16} />Spec Sheet</button>
                 </div>
               </div>
             </SpotlightCard>

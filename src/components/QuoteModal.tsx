@@ -17,30 +17,30 @@ export default function QuoteModal() {
   const set = <K extends keyof QuoteForm>(k: K, v: QuoteForm[K]) => setF((s) => ({ ...s, [k]: v }))
   const rec = recommendCbm(f.herd)
   const valid = f.name.trim().length > 1 && f.city.trim().length > 1 && /^[+\d][\d\s-]{8,}$/.test(f.phone.trim())
-  const choice = (on: boolean) => `min-h-[56px] border px-4 font-display text-xl uppercase tracking-[.1em] transition-colors ${on ? 'border-gold bg-gold text-obsidian' : 'border-white/15 text-slate-200 hover:border-gold/60'}`
+  const choice = (on: boolean) => `min-h-[52px] sm:min-h-[56px] border px-3 sm:px-4 font-display text-lg sm:text-xl uppercase tracking-[.08em] transition-colors flex flex-col items-center justify-center ${on ? 'border-gold bg-gold text-obsidian' : 'border-white/15 text-slate-200 hover:border-gold/60'}`
   return (
     <Modal open={quoteOpen} onClose={closeQuote} title="Request a Quotation">
-      <div className="p-6 sm:p-8">
-        <ol className="mb-8 flex gap-2" aria-label="Progress">
-          {STEPS.map((s, i) => <li key={s} className="flex-1"><div className={`h-px ${i <= step ? 'bg-gold' : 'bg-white/15'}`} /><span className={`mt-2 block font-display text-xs uppercase tracking-[.22em] ${i === step ? 'text-white' : 'text-slate-500'}`}>{i + 1}. {s}</span></li>)}
+      <div className="p-5 sm:p-8">
+        <ol className="mb-6 sm:mb-8 flex gap-2" aria-label="Progress">
+          {STEPS.map((s, i) => <li key={s} className="flex-1"><div className={`h-px ${i <= step ? 'bg-gold' : 'bg-white/15'}`} /><span className={`mt-2 block font-display text-[11px] sm:text-xs uppercase tracking-[.18em] sm:tracking-[.22em] ${i === step ? 'text-white' : 'text-slate-500'}`}>{i + 1}. {s}</span></li>)}
         </ol>
         <AnimatePresence mode="wait">
           <motion.div key={step} initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} transition={{ duration: 0.2 }}>
             {step === 0 && (<div>
-              <h3 className="mb-4 font-display text-2xl uppercase tracking-[.08em] text-white">Herd size</h3>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">{HERD_OPTIONS.map((h) => <button key={h.value} onClick={() => setF((s) => ({ ...s, herd: h.value, cbm: recommendCbm(h.value) }))} className={choice(f.herd === h.value)}>{h.label}</button>)}</div>
-              <p className="mt-5 border-l-2 border-gold bg-white/[.03] p-3 text-sm text-slate-300">Suggested for this herd: <b className="text-gold">{rec} CBM hydraulic TMR mixer</b></p>
+              <h3 className="mb-4 font-display text-xl sm:text-2xl uppercase tracking-[.08em] text-white">Herd size</h3>
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3 sm:grid-cols-4">{HERD_OPTIONS.map((h) => <button key={h.value} onClick={() => setF((s) => ({ ...s, herd: h.value, cbm: recommendCbm(h.value) }))} className={choice(f.herd === h.value)}>{h.label}</button>)}</div>
+              <p className="mt-5 border-l-2 border-gold bg-white/[.03] p-3 text-xs sm:text-sm text-slate-300">Suggested for this herd: <b className="text-gold">{rec} CBM hydraulic TMR mixer</b></p>
             </div>)}
-            {step === 1 && (<div className="space-y-7">
-              <div><h3 className="mb-4 font-display text-2xl uppercase tracking-[.08em] text-white">Mixer capacity (CBM)</h3>
-                <div className="grid grid-cols-4 gap-3">{CBM_OPTIONS.map((c) => <button key={c} onClick={() => set('cbm', c)} className={choice(f.cbm === c)}>{c}{c === rec && <span className="block text-[10px] tracking-[.2em] opacity-70">SUGGESTED</span>}</button>)}</div></div>
-              <div><h3 className="mb-4 font-display text-2xl uppercase tracking-[.08em] text-white">Weighing system</h3>
-                <div className="grid gap-2">{SCALE_OPTIONS.map((s) => <button key={s} onClick={() => set('scale', s)} className={`${choice(f.scale === s)} text-left !font-sans !text-sm !normal-case !tracking-normal`}>{s}</button>)}</div></div>
+            {step === 1 && (<div className="space-y-6 sm:space-y-7">
+              <div><h3 className="mb-4 font-display text-xl sm:text-2xl uppercase tracking-[.08em] text-white">Mixer capacity (CBM)</h3>
+                <div className="grid grid-cols-2 xs:grid-cols-4 gap-2.5 sm:gap-3">{CBM_OPTIONS.map((c) => <button key={c} onClick={() => set('cbm', c)} className={choice(f.cbm === c)}><span>{c}</span>{c === rec && <span className="block text-[9px] sm:text-[10px] tracking-wider sm:tracking-[.2em] opacity-80">SUGGESTED</span>}</button>)}</div></div>
+              <div><h3 className="mb-4 font-display text-xl sm:text-2xl uppercase tracking-[.08em] text-white">Weighing system</h3>
+                <div className="grid gap-2">{SCALE_OPTIONS.map((s) => <button key={s} onClick={() => set('scale', s)} className={`${choice(f.scale === s)} !items-start text-left !font-sans !text-xs sm:!text-sm !normal-case !tracking-normal py-3`}>{s}</button>)}</div></div>
               <div><label htmlFor="prod" className="mb-1 block text-sm text-slate-400">Model</label>
                 <select id="prod" value={f.productId} onChange={(e) => set('productId', e.target.value)} className={input}>{PRODUCTS.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}</select></div>
             </div>)}
             {step === 2 && (<div className="space-y-4">
-              <div className="border border-white/10 bg-obsidian p-4 text-sm leading-relaxed text-slate-300">
+              <div className="border border-white/10 bg-obsidian p-4 text-xs sm:text-sm leading-relaxed text-slate-300">
                 <p className="mb-2 font-display text-xs uppercase tracking-[.25em] text-gold">Your specification</p>
                 {f.herd >= 300 ? '300+' : f.herd} animals · {f.cbm} CBM · {PRODUCTS.find((p) => p.id === f.productId)?.name}<br />{f.scale}
               </div>
@@ -50,10 +50,10 @@ export default function QuoteModal() {
           </motion.div>
         </AnimatePresence>
         <div className="mt-8 flex items-center justify-between gap-3">
-          <button onClick={() => setStep((s) => s - 1)} className={`btn btn-outline ${step === 0 ? 'invisible' : ''}`}><ArrowLeft size={16} />Back</button>
+          <button onClick={() => setStep((s) => s - 1)} className={`btn btn-outline !px-4 sm:!px-7 ${step === 0 ? 'invisible' : ''}`}><ArrowLeft size={16} />Back</button>
           {step < 2
-            ? <button onClick={() => setStep((s) => s + 1)} className="btn btn-gold">Next <ArrowRight size={16} /></button>
-            : <a href={valid ? whatsappUrl(f) : undefined} target="_blank" rel="noreferrer" aria-disabled={!valid} className={`btn btn-gold ${valid ? '' : 'pointer-events-none opacity-40'}`}><MessageCircle size={18} />Send to WhatsApp</a>}
+            ? <button onClick={() => setStep((s) => s + 1)} className="btn btn-gold !px-4 sm:!px-7">Next <ArrowRight size={16} /></button>
+            : <a href={valid ? whatsappUrl(f) : undefined} target="_blank" rel="noreferrer" aria-disabled={!valid} className={`btn btn-gold !px-4 sm:!px-7 text-xs sm:text-[15px] ${valid ? '' : 'pointer-events-none opacity-40'}`}><MessageCircle size={18} />Send to WhatsApp</a>}
         </div>
       </div>
     </Modal>

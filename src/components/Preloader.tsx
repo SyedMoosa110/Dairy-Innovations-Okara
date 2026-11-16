@@ -27,10 +27,10 @@ export default function Preloader() {
     <div className="fixed inset-0 z-[100]" role="status" aria-label="Loading">
       {panel('l')}{panel('r')}
       <motion.div className="absolute inset-0 grid place-items-center px-6 text-center" animate={{ opacity: open ? 0 : 1 }} transition={{ duration: 0.35 }}>
-        <div className="w-full max-w-md">
-          <h1 className="font-display text-4xl font-semibold uppercase tracking-[.3em] text-white sm:text-5xl">Dairy Innovations</h1>
-          <div className="mx-auto mt-8 h-px w-full bg-white/10"><div className="h-px bg-gold" style={{ width: `${p * 100}%` }} /></div>
-          <div className="mt-4 flex justify-between font-display text-[12px] uppercase tracking-[.3em] text-slate-400">
+        <div className="w-full max-w-md px-2">
+          <h1 className="font-display text-2xl xs:text-3xl sm:text-5xl font-semibold uppercase tracking-[.14em] sm:tracking-[.25em] text-white">Dairy Innovations</h1>
+          <div className="mx-auto mt-6 sm:mt-8 h-px w-full bg-white/10"><div className="h-px bg-gold" style={{ width: `${p * 100}%` }} /></div>
+          <div className="mt-4 flex justify-between font-display text-[10px] xs:text-[12px] uppercase tracking-wider sm:tracking-[.25em] text-slate-400">
             <span>Engineering Precision — Okara</span><span className="text-gold">{Math.round(p * 100)}%</span>
           </div>
         </div>
